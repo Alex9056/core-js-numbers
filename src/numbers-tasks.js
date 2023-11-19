@@ -199,8 +199,12 @@ function roundToPowerOfTen(num, pow) {
  *   16 => false
  *   17 => true
  */
-function isPrime(/* n */) {
-  throw new Error('Not implemented');
+function isPrime(n) {
+  if (n === 1 || n === 2) return true;
+  for (let i = 2; i < n; i += 1) {
+    if (n % i === 0) return false;
+  }
+  return true;
 }
 
 /**
@@ -233,8 +237,8 @@ function toNumber(/* value, def */) {
  *   -2 => -8
  *   0  => 0
  */
-function getCube(/* num */) {
-  throw new Error('Not implemented');
+function getCube(num) {
+  return num ** 3;
 }
 
 /**
@@ -250,8 +254,21 @@ function getCube(/* num */) {
  *   3  => 2
  *   10 => 55
  */
-function getFibonacciNumber(/* index */) {
-  throw new Error('Not implemented');
+// Fibonacci number - следующее число получается как сумма двух предыдущих
+function getFibonacciNumber(index) {
+  if (index === 0) return 0;
+  // return getFibonacciNumber(index - 1) + getFibonacciNumber(index - 2);
+  let firstFib = 1;
+  let secondFib = 1;
+  if (index === 1) return firstFib;
+  if (index === 2) return secondFib;
+  let fib;
+  for (let i = 3; i <= index; i += 1) {
+    fib = secondFib + firstFib;
+    firstFib = secondFib;
+    secondFib = fib;
+  }
+  return fib;
 }
 
 /**
@@ -265,8 +282,14 @@ function getFibonacciNumber(/* index */) {
  *   10 => 55 // (1+2+3+...+10)
  *   1  => 1
  */
-function getSumToN(/* n */) {
-  throw new Error('Not implemented');
+function getSumToN(n) {
+  // if (n === 0) return 0;
+  // return getSumToN(n) + getSumToN(n - 1);
+  let sum = 0;
+  for (let i = 0; i <= n; i += 1) {
+    sum += i;
+  }
+  return sum;
 }
 
 /**
@@ -280,8 +303,14 @@ function getSumToN(/* n */) {
  *   202 => 4  // (2+0+2)
  *   5   => 5  // 5
  */
-function getSumOfDigits(/* num */) {
-  throw new Error('Not implemented');
+function getSumOfDigits(num) {
+  const digits = num.toString().length;
+  let sum = 0;
+  for (let i = 1; i <= digits; i += 1) {
+    const d = Math.floor((num % 10 ** i) / 10 ** (i - 1));
+    sum += d;
+  }
+  return sum;
 }
 
 /**
